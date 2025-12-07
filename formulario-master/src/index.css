@@ -1,0 +1,169 @@
+/* Estilo inspirado em "Stranger Things" — neon vermelho, fundo sombrio, flicker/glitch */
+
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=VT323&display=swap');
+
+:root{
+  --st-bg-1: #070307;
+  --st-bg-2: #0f0610;
+  --st-red: #ff2b3d;
+  --st-red-dark: #8a0818;
+  --st-muted: #9aa0a6;
+  --glass: rgba(255,255,255,0.03);
+}
+
+/* base (mantém o que já estava, com toque dark) */
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: radial-gradient(1200px 600px at 10% 20%, rgba(255,40,60,0.03), transparent),
+              linear-gradient(180deg, var(--st-bg-1) 0%, var(--st-bg-2) 100%);
+  color: #f5eef0;
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+/* filme scanlines / noise */
+body::before{
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 100% 3px;
+  mix-blend-mode: overlay;
+  opacity: 0.18;
+}
+
+/* título com fonte retro e efeito neon/flicker */
+.title{
+  font-family: 'Bangers', cursive;
+  text-align: center;
+  color: var(--st-red);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 28px;
+  margin: 0 0 14px;
+  text-shadow:
+    0 0 6px rgba(255,43,61,0.35),
+    0 0 18px rgba(255,43,61,0.20),
+    0 0 36px rgba(138,8,24,0.12);
+  animation: neon-flicker 3.6s infinite;
+}
+
+/* formulário com borda sutil e brilho vermelho */
+.form-wrap{
+  width:100%;
+  max-width:640px;
+  margin: 28px auto;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+  border: 1px solid rgba(255,43,61,0.07);
+  box-shadow: 0 10px 40px rgba(8,6,12,0.75), 0 0 80px rgba(138,8,24,0.03) inset;
+  padding: 28px;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+}
+
+/* efeito glitch/scan em hover leve */
+.form-wrap::after{
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(90deg, transparent, rgba(255,43,61,0.02) 50%, transparent);
+  mix-blend-mode: screen;
+  pointer-events: none;
+  transform: translateX(-120%);
+}
+.form-wrap:hover::after{
+  animation: sweep 1.2s linear 1;
+}
+
+/* campos — reforço do tema com neon e placeholder escuro */
+.field{
+  background: rgba(10,6,8,0.45);
+  border: 1px solid rgba(255,43,61,0.06);
+  border-radius: 8px;
+  padding: 14px;
+  transition: transform .18s, box-shadow .18s, border-color .18s;
+}
+.field input,
+.field textarea{
+  background: transparent;
+  color: #fff;
+  border: 0;
+  outline: 0;
+  width: 100%;
+  font-size: 15px;
+}
+.field label{
+  color: var(--st-muted);
+  font-size: 13px;
+}
+
+/* foco com glow vermelho */
+.field:focus-within{
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(255,43,61,0.06), 0 0 18px rgba(255,43,61,0.05) inset;
+  border-color: rgba(255,43,61,0.14);
+}
+
+/* botão estilo retro neon */
+.btn{
+  background: linear-gradient(90deg, var(--st-red), var(--st-red-dark));
+  color: #fff;
+  border: 0;
+  padding: 12px 16px;
+  border-radius: 8px;
+  font-weight: 700;
+  letter-spacing: .6px;
+  cursor: pointer;
+  box-shadow:
+    0 10px 30px rgba(255,43,61,0.12),
+    0 0 28px rgba(255,43,61,0.18);
+  transition: transform .12s, box-shadow .12s, opacity .12s;
+  font-family: 'VT323', monospace;
+}
+.btn:active{ transform: translateY(1px); }
+.btn[disabled]{ opacity: 0.6; cursor: default; box-shadow: none; }
+
+/* sucesso com círculo vermelho brilhante */
+.success-overlay .checkmark{
+  background: none;
+  border: 4px solid rgba(255,43,61,0.12);
+  box-shadow: 0 14px 46px rgba(138,8,24,0.18), 0 0 28px rgba(255,43,61,0.2);
+}
+
+/* mensagens de erro em vermelho neon */
+.error-text{
+  color: #ff8a95;
+  font-weight: 600;
+}
+
+/* animações */
+@keyframes neon-flicker{
+  0%{ text-shadow: 0 0 6px rgba(255,43,61,0.35), 0 0 18px rgba(255,43,61,0.18); opacity:1; }
+  5%{ text-shadow: none; opacity:.9; }
+  10%{ text-shadow: 0 0 12px rgba(255,43,61,0.4); }
+  20%{ text-shadow: 0 0 6px rgba(255,43,61,0.35); }
+  100%{ text-shadow: 0 0 6px rgba(255,43,61,0.35); opacity:1; }
+}
+@keyframes sweep{
+  to{ transform: translateX(120%); opacity: 0.12; }
+}
+
+/* responsivo: reduz efeito em telas pequenas */
+@media (max-width: 520px){
+  .title{ font-size: 22px; }
+  .form-wrap{ padding: 18px; border-radius: 8px; }
+}
+
+/* mantém código existente (fonts, code) */
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
