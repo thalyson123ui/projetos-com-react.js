@@ -1,0 +1,105 @@
+/* Reset e fonte */
+body {
+  margin: 0;
+  font-family: 'Inter', system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: radial-gradient( circle at 10% 10% , #f0f7ff 0%, #e8f2ff 25%, #eef6f9 100% );
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f1724;
+}
+
+/* App container */
+.App {
+  width: 420px;
+  max-width: calc(100% - 40px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,255,0.85));
+  padding: 28px;
+  border-radius: 14px;
+  box-shadow: 0 8px 30px rgba(3, 10, 30, 0.15);
+  text-align: center;
+  border: 1px solid rgba(12, 24, 48, 0.06);
+}
+
+/* Título e status */
+.App h2 {
+  margin: 0 0 8px;
+  font-size: 22px;
+  letter-spacing: 0.4px;
+  color: #0b1220;
+}
+.App p {
+  margin: 6px 0 16px;
+  font-weight: 600;
+  color: #15324b;
+}
+
+/* Tabuleiro: usa seletores para sobrescrever estilos inline com !important */
+.App > div > div { /* linhas do tabuleiro (estrutura atual do Board) */
+  display: flex;
+  justify-content: center;
+}
+
+/* Estilo dos botões (caso inline styles sejam aplicados, !important sobrescreve) */
+.App button {
+  width: 96px !important;
+  height: 96px !important;
+  font-size: 40px !important;
+  margin: 6px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: linear-gradient(180deg,#ffffff 0%, #f3f6ff 100%) !important;
+  border: 2px solid #2b475e !important;
+  color: #0b2133 !important;
+  border-radius: 12px !important;
+  box-shadow: 0 6px 14px rgba(18, 40, 70, 0.12) !important;
+  cursor: pointer !important;
+  transition: transform .08s ease, box-shadow .12s ease, background .12s ease;
+  user-select: none;
+}
+
+/* Hover e active */
+.App button:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(18, 40, 70, 0.14) !important;
+}
+.App button:active {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 12px rgba(18, 40, 70, 0.12) !important;
+}
+
+/* Reiniciar — botão pequeno abaixo do tabuleiro */
+.App > div:last-child {
+  margin-top: 18px;
+}
+.App > div:last-child button {
+  width: auto !important;
+  height: auto !important;
+  padding: 10px 14px !important;
+  font-size: 14px !important;
+  border-radius: 8px !important;
+  background: linear-gradient(180deg,#2b7cff 0%, #1a5fe0 100%) !important;
+  color: #fff !important;
+  border: none !important;
+  box-shadow: 0 8px 20px rgba(41, 74, 255, 0.18) !important;
+}
+
+/* Mensagem de empate/vencedor */
+.status-winner {
+  color: #0b6623;
+  font-weight: 700;
+}
+.status-draw {
+  color: #6b4b00;
+  font-weight: 700;
+}
+
+/* Responsividade */
+@media (max-width: 500px) {
+  .App { width: 94%; padding: 18px; }
+  .App button { width: 72px !important; height: 72px !important; font-size: 28px !important; margin: 4px !important; }
+}

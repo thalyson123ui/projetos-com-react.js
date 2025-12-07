@@ -1,0 +1,168 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* nova: tema escuro */
+  background: linear-gradient(180deg,#071124 0%, #0b1220 100%);
+  color: #e6eef8;
+  transition: background .35s ease, color .25s ease;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* tema escuro, cards, sombras e animações */
+:root{
+  --bg:#0b1220;
+  --card: rgba(255,255,255,0.03);
+  --muted:#9aa4b2;
+  --accent-start:#7c3aed;
+  --accent-end:#4f46e5;
+  --glass-shadow: 0 8px 30px rgba(2,6,23,0.7);
+  --soft-radius: 12px;
+}
+
+/* container principal */
+.App {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  box-sizing: border-box;
+}
+
+/* header/card */
+.App-header {
+  width: 720px;
+  max-width: calc(100% - 48px);
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.02));
+  border-radius: var(--soft-radius);
+  padding: 28px;
+  box-shadow: var(--glass-shadow);
+  backdrop-filter: blur(6px) saturate(120%);
+  transition: transform .18s ease, box-shadow .18s ease;
+  border: 1px solid rgba(255,255,255,0.03);
+}
+
+/* elevação ao passar o mouse */
+.App-header:hover{
+  transform: translateY(-8px);
+  box-shadow: 0 20px 50px rgba(2,6,23,0.75);
+}
+
+/* logo com sombra e rotação lenta */
+.App-logo{
+  height:64px;
+  width:64px;
+  border-radius:8px;
+  filter: drop-shadow(0 8px 22px rgba(124,58,237,0.24));
+  animation: slow-rotate 18s linear infinite;
+}
+
+/* título */
+.App-header h2{
+  margin: 8px 0 16px;
+  color: #f1f6fb;
+  letter-spacing: 0.2px;
+  font-weight: 600;
+}
+
+/* controles */
+label { color: var(--muted); display: inline-block; }
+
+input[type="text"][readonly]{
+  background: var(--card);
+  color: #e6eef8;
+  border: 1px solid rgba(255,255,255,0.04);
+  padding: 8px 10px;
+  border-radius: 8px;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.35);
+  transition: box-shadow .15s ease, transform .12s ease;
+}
+
+/* animação de entrada do campo de senha */
+input[type="text"][readonly].show {
+  animation: fade-in-up .28s ease both;
+}
+
+/* botões primários */
+button{
+  background: linear-gradient(180deg,var(--accent-start), var(--accent-end));
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 12px;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(79,70,229,0.14);
+  transition: transform .12s ease, box-shadow .12s ease, opacity .12s;
+  font-weight: 600;
+}
+
+/* hover e active */
+button:hover{ transform: translateY(-4px); box-shadow: 0 18px 36px rgba(79,70,229,0.18); }
+button:active{ transform: translateY(-1px); }
+
+/* input range estilizado */
+input[type="range"]{
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  background: linear-gradient(90deg, var(--accent-start), var(--accent-end));
+  border-radius: 999px;
+  outline: none;
+  box-shadow: inset 0 2px 6px rgba(0,0,0,0.4);
+}
+input[type="range"]::-webkit-slider-thumb{
+  -webkit-appearance: none;
+  width:18px;
+  height:18px;
+  background: linear-gradient(180deg, #fff, #e8e8ff);
+  border-radius:50%;
+  box-shadow: 0 6px 18px rgba(124,58,237,0.26);
+  border: 3px solid rgba(255,255,255,0.12);
+  cursor: pointer;
+}
+
+/* checkboxes com accent */
+input[type="checkbox"]{
+  width:16px;
+  height:16px;
+  accent-color: var(--accent-start);
+  margin-right:6px;
+}
+
+/* labels e layout interno */
+.App-header > div { color: var(--muted); }
+.App-header .controls { margin-top: 8px; }
+
+/* força da senha */
+strong { color: #e6eef8; }
+
+/* pequenas transições */
+* { transition: background .12s ease, color .12s ease, border-color .12s ease; }
+
+/* animações keyframes */
+@keyframes slow-rotate{
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes fade-in-up{
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn{
+  from { opacity: 0; } to { opacity: 1; }
+}
+
+/* utilitários responsivos */
+@media (max-width:480px){
+  .App-header { padding: 18px; }
+  .App-logo{ height:56px; width:56px; }
+  button{ padding: 8px 10px; }
+}
