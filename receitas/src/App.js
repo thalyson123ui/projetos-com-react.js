@@ -41,21 +41,21 @@ function App() {
     {
       id: 6,
       nome: 'Arroz com Feijão',
-      imagem: 'https://images.unsplash.com/photo-1596206365887-f134db0f5e4e?w=400&h=300&fit=crop',
+      imagem: 'https://uploads.metroimg.com/wp-content/uploads/2019/09/11161025/arroz-e-feij%C3%A3o.jpg',
       ingredientes: ['2 xícaras de arroz', '2 xícaras de feijão', 'Cebola', 'Alho'],
       modo: 'Refogue a cebola e alho, adicione o feijão e o arroz com água.'
     },
     {
       id: 7,
       nome: 'Pavê de Chocolate',
-      imagem: 'https://images.unsplash.com/photo-1571115764595-644467f875d8?w=400&h=300&fit=crop',
+      imagem: 'https://guiadacozinha.com.br/wp-content/uploads/2020/10/pave-brigadeiro-chocolate-amargo.jpg',
       ingredientes: ['Biscoito de chocolate', 'Leite condensado', 'Chocolate em pó', 'Calda de chocolate'],
       modo: 'Alterne camadas de biscoito molhado em leite com creme de chocolate.'
     },
     {
       id: 8,
       nome: 'Peixe ao Molho de Limão',
-      imagem: 'https://images.unsplash.com/photo-1610945415295-d9bbf86cb5d5?w=400&h=300&fit=crop',
+      imagem: 'https://d21wiczbqxib04.cloudfront.net/IPOKQricBdcdADXBqnont8CteXs=/0x600/smart/https://osuper-ecommerce-compre3letras.s3.sa-east-1.amazonaws.com/575b7263-f26a8836filedepeixegrelhadoaomolhodegorgonzola.jpeg',
       ingredientes: ['Filé de peixe', 'Limão', 'Manteiga', 'Sal e pimenta'],
       modo: 'Grelhe o peixe e regue com molho de manteiga e limão.'
     }
