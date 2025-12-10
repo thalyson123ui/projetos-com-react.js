@@ -1,0 +1,129 @@
+/* ...existing code... */
+/* Adicione abaixo do conteúdo existente para estilos das novas funcionalidades */
+
+:root {
+  --fav: #ffd166;
+  --muted-2: rgba(230,240,255,0.5);
+}
+
+/* tema claro */
+[data-theme="light"] {
+  --bg-1: #f5f9ff;
+  --bg-2: #e6f3ff;
+  --card-bg: #ffffff;
+  --accent: #0077cc;
+  --danger: #c92a2a;
+  --text: #07202b;
+  --muted: rgba(7,32,43,0.6);
+  --fav: #ffb547;
+}
+
+/* header top */
+.header-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:12px;
+}
+
+.header-actions{
+  display:flex;
+  gap:8px;
+  align-items:center;
+}
+
+/* form */
+.task-form input{
+  flex:1;
+  padding:10px 12px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color:var(--text);
+}
+
+[data-theme="light"] .task-form input{
+  border:1px solid rgba(7,32,43,0.06);
+  background: transparent;
+}
+
+/* lista */
+.task-list{ margin-top:6px; padding:0; list-style:none; }
+
+.task-item{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:10px;
+  border-radius:8px;
+  margin-bottom:8px;
+  transition: background .12s, transform .08s;
+  background: transparent;
+}
+
+.task-item.favorite{ box-shadow: 0 6px 14px rgba(255,181,71,0.06); }
+
+/* texto */
+.task-text{ margin-left:6px; color:var(--text); font-size:0.96rem; flex:1; word-break:break-word; }
+.task-text.done{ text-decoration:line-through; opacity:0.6; }
+
+/* ações */
+.task-actions{ display:flex; gap:8px; margin-left:auto; align-items:center; }
+
+.fav-btn{
+  background:transparent;
+  border:none;
+  font-size:18px;
+  cursor:pointer;
+  color:var(--muted-2);
+}
+.task-item.favorite .fav-btn{ color:var(--fav); }
+
+.edit-btn, .remove-btn, .task-actions button{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.04);
+  color:var(--accent);
+  padding:6px 8px;
+  border-radius:6px;
+  cursor:pointer;
+  font-weight:600;
+}
+.remove-btn{ color:var(--danger); border-color: rgba(255,107,129,0.08); }
+
+.edit-input{
+  flex:1;
+  padding:8px 10px;
+  border-radius:8px;
+  border:1px solid rgba(255,255,255,0.06);
+  background: rgba(255,255,255,0.02);
+  color:var(--text);
+}
+
+/* botões do topo */
+.theme-toggle, .clear-favorites{
+  background:transparent;
+  border:1px solid rgba(255,255,255,0.06);
+  color:var(--muted);
+  padding:6px 10px;
+  border-radius:8px;
+  cursor:pointer;
+}
+.theme-toggle:hover, .clear-favorites:hover{ color:var(--accent); }
+
+/* mensagem lista vazia */
+.empty{ text-align:center; color:var(--muted); padding:12px; }
+
+/* adaptações para tema claro */
+[data-theme="light"] .edit-input,
+[data-theme="light"] .task-item,
+[data-theme="light"] .task-form input {
+  border-color: rgba(7,32,43,0.06);
+  background: transparent;
+}
+
+/* pequenas correções responsivas */
+@media (max-width:480px){
+  .header-actions{ gap:6px; }
+  .task-actions{ gap:6px; }
+  .App-header ul{ width:100%; }
+}
