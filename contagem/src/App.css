@@ -1,38 +1,104 @@
-.App {
-  text-align: center;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial Black, Arial, sans-serif;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.toggle {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: #f5c400;
+  border: none;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+h1 {
+  font-size: 4rem;
+  letter-spacing: 4px;
 }
 
-.App-header {
-  background-color: #282c34;
+h2 {
+  margin: 1rem 0 2rem;
+  font-weight: 300;
+}
+
+/* ===================== */
+/* TEMA ROCKSTAR */
+/* ===================== */
+.rockstar-bg {
   min-height: 100vh;
+  background: radial-gradient(circle at top, #111, #000);
+  color: #f5c400;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.timer {
+  display: flex;
+  gap: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.timer div {
+  text-align: center;
+}
+
+.timer span {
+  display: block;
+  font-size: 3rem;
+}
+
+/* ===================== */
+/* FLIP CLOCK REAL */
+/* ===================== */
+.flip-bg {
+  min-height: 100vh;
+  background: #000;
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.flip-container {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.flip-unit {
+  text-align: center;
+}
+
+.flip-card {
+  background: linear-gradient(#222, #000);
+  border: 2px solid #f5c400;
+  font-size: 3rem;
+  padding: 1rem 1.5rem;
+  border-radius: 8px;
+  animation: flip 0.6s ease-in-out;
+  min-width: 90px;
+}
+
+.flip-unit span {
+  display: block;
+  margin-top: 0.5rem;
+  color: #f5c400;
+  font-size: 0.9rem;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(90deg);
+    opacity: 0;
   }
-  to {
-    transform: rotate(360deg);
+  100% {
+    transform: rotateX(0);
+    opacity: 1;
   }
 }

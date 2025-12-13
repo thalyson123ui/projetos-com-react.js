@@ -1,53 +1,70 @@
 import { useEffect, useState } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
-const GTA6_RELEASE_DATE = new Date('2025-12-31T00:00:00');
+/**
+ * Rockstar confirmou apenas "2025".
+ * Usamos 31/12/2025 como placeholder oficial.
+ */
+const GTA6_RELEASE_DATE = new Date('2026-11-19T00:00:00');
 
-function getTimeRemaining(targetDate) {
-  const total = targetDate - new Date();
 
-  if (total <= 0) {
-    return { days: 0, hours: 0, minutes: 0, seconds: 0 };
-  }
+function getTime() {
+  const diff = Math.max(GTA6_RELEASE_DATE - new Date(), 0);
 
-  const seconds = Math.floor((total / 1000) % 60);
-  const minutes = Math.floor((total / 1000 / 60) % 60);
-  const hours = Math.floor((total / 1000 / 60 / 60) % 24);
-  const days = Math.floor(total / (1000 * 60 * 60 * 24));
-
-  return { days, hours, minutes, seconds };
+  return {
+    d: Math.floor(diff / 86400000),
+    h: Math.floor((diff / 3600000) % 24),
+    m: Math.floor((diff / 60000) % 60),
+    s: Math.floor((diff / 1000) % 60),
+  };
 }
 
-function App() {
-  const [timeLeft, setTimeLeft] = useState(
-    getTimeRemaining(GTA6_RELEASE_DATE)
-  );
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTimeLeft(getTimeRemaining(GTA6_RELEASE_DATE));
-    }, 1000);
-
-    return () => clearInterval(timer);
-  }, []);
-
+function FlipUnit({ value, label }) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-
-        <h1>⏳ Contagem Regressiva para GTA 6</h1>
-
-        <div style={{ fontSize: '1.5rem', marginTop: '1rem' }}>
-          <p>{timeLeft.days} dias</p>
-          <p>{timeLeft.hours} horas</p>
-          <p>{timeLeft.minutes} minutos</p>
-          <p>{timeLeft.seconds} segundos</p>
-        </div>
-      </header>
+    <div className="flip-unit">
+      <div key={value} className="flip-card">
+        {String(value).padStart(2, '0')}
+      </div>
+      <span>{label}</span>
     </div>
   );
 }
 
-export default App;
+export default function App() {
+  const [time, setTime] = useState(getTime());
+  const [flipMode, setFlipMode] = useState(false);
+
+  useEffect(() => {
+    const id = setInterval(() => setTime(getTime()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  return (
+    <div className={flipMode ? 'flip-bg' : 'rockstar-bg'}>
+      <button className="toggle" onClick={() => setFlipMode(!flipMode)}>
+        {flipMode ? 'Tema Rockstar' : 'Flip Clock'}
+      </button>
+
+      <h1>GTA VI</h1>
+      <h2>Lançamento oficial em 2025</h2>
+
+      {!flipMode && (
+        <div className="timer">
+          <div><span>{time.d}</span>DIAS</div>
+          <div><span>{time.h}</span>HORAS</div>
+          <div><span>{time.m}</span>MIN</div>
+          <div><span>{time.s}</span>SEG</div>
+        </div>
+      )}
+
+      {flipMode && (
+        <div className="flip-container">
+          <FlipUnit value={time.d} label="DIAS" />
+          <FlipUnit value={time.h} label="HORAS" />
+          <FlipUnit value={time.m} label="MIN" />
+          <FlipUnit value={time.s} label="SEG" />
+        </div>
+      )}
+    </div>
+  );
+}
