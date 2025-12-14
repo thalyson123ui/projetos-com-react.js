@@ -1,5 +1,5 @@
 // src/App.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './App.css';
 import logo from './logo.svg';
 
@@ -24,6 +24,12 @@ function DestinationCard({ title, location, price, imageUrl }) {
 }
 
 function App() {
+  const [darkMode, setDarkMode] = useState(false);
+
+  useEffect(() => {
+    document.body.className = darkMode ? 'dark' : '';
+  }, [darkMode]);
+
   const destinations = [
     {
       id: 1,
@@ -56,12 +62,20 @@ function App() {
       <header className="App-header">
         <img src={logo} alt="Logo" className="App-logo" />
         <h1>🌎 Seu Site de Viagens</h1>
+
         <nav>
           <a href="#home">Início</a>
           <a href="#destinos">Destinos</a>
           <a href="#ofertas">Ofertas</a>
           <a href="#contato">Contato</a>
         </nav>
+
+        <button
+          className="dark-mode-toggle"
+          onClick={() => setDarkMode(!darkMode)}
+        >
+          {darkMode ? '☀️ Claro' : '🌙 Escuro'}
+        </button>
       </header>
 
       <main className="App-main">

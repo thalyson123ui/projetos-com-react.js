@@ -1,21 +1,35 @@
+/* Tema claro (default) */
 body {
-  font-family: 'Segoe UI', sans-serif;
   margin: 0;
+  font-family: 'Segoe UI', sans-serif;
   background: #f5f7fa;
+  color: #111;
+  transition: background 0.3s, color 0.3s;
 }
 
-.App-header {
+/* Tema escuro */
+body.dark {
+  background: #121212;
+  color: #e0e0e0;
+}
+
+.App-header,
+.App-footer {
   background: #0d47a1;
   color: white;
   padding: 20px;
   text-align: center;
 }
 
-.App-header nav a {
-  color: white;
+body.dark .App-header,
+body.dark .App-footer {
+  background: #1f1f1f;
+}
+
+nav a {
   margin: 0 10px;
+  color: white;
   text-decoration: none;
-  font-weight: 500;
 }
 
 .App-main {
@@ -35,15 +49,11 @@ body {
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s;
+  transition: background 0.3s;
 }
 
-.destination-card:hover {
-  transform: translateY(-5px);
-}
-
-.image-wrapper {
-  position: relative;
+body.dark .destination-card {
+  background: #1e1e1e;
 }
 
 .image-wrapper img {
@@ -54,21 +64,14 @@ body {
 
 .price-badge {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
   background: #ff6f00;
   color: white;
   padding: 6px 10px;
   border-radius: 20px;
-  font-weight: bold;
 }
 
 .card-info {
   padding: 16px;
-}
-
-.location {
-  color: #555;
 }
 
 .book-button {
@@ -76,19 +79,20 @@ body {
   width: 100%;
   padding: 10px;
   border: none;
+  border-radius: 6px;
   background: #0d47a1;
   color: white;
-  border-radius: 6px;
   cursor: pointer;
 }
 
-.book-button:hover {
-  background: #1565c0;
+body.dark .book-button {
+  background: #333;
 }
 
-.App-footer {
-  background: #0d47a1;
-  color: white;
-  text-align: center;
-  padding: 15px;
+.dark-mode-toggle {
+  margin-top: 12px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  border: none;
+  cursor: pointer;
 }
