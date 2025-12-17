@@ -1,0 +1,28 @@
+.App {
+  text-align: center;
+  padding: 20px;
+}
+
+input {
+  padding: 10px;
+  width: 300px;
+  margin: 20px 0;
+}
+
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+.movie-card {
+  background: #1e1e1e;
+  color: white;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.movie-card img {
+  width: 100%;
+  border-radius: 10px;
+}
