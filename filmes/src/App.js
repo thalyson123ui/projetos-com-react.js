@@ -9,13 +9,14 @@ const IMAGE_URL = "https://image.tmdb.org/t/p/w500";
 export default function App() {
   const [movies, setMovies] = useState([]);
   const [search, setSearch] = useState("");
-  const [theme, setTheme] = useState("dark"); // 👈 novo estado para tema
+  const [theme, setTheme] = useState("dark");
 
   // Atualiza o atributo data-theme no <html>
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
+  // Carrega filmes populares ao iniciar
   useEffect(() => {
     fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=pt-BR`)
       .then((res) => res.json())
@@ -23,6 +24,7 @@ export default function App() {
       .catch(() => setMovies([]));
   }, []);
 
+  // Função de pesquisa
   const handleSearch = (e) => {
     e.preventDefault();
     if (!search.trim()) return;
@@ -46,6 +48,7 @@ export default function App() {
         Alternar para {theme === "dark" ? "🌞 Claro" : "🌙 Escuro"}
       </button>
 
+      {/* Formulário de busca */}
       <form onSubmit={handleSearch}>
         <input
           type="text"
@@ -53,27 +56,34 @@ export default function App() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+        <button type="submit">🔍 Buscar</button>
       </form>
 
+      {/* Grid de filmes */}
       <div className="movie-grid">
-        {movies.map((movie) => (
-          <div className="movie-card" key={movie.id}>
-            {movie.poster_path ? (
-              <img
-                src={`${IMAGE_URL}${movie.poster_path}`}
-                alt={movie.title}
-              />
-            ) : (
-              <div className="no-image">Sem imagem</div>
-            )}
+        {movies.length === 0 ? (
+          <p>Nenhum filme encontrado.</p>
+        ) : (
+          movies.map((movie) => (
+            <div className="movie-card" key={movie.id}>
+              {movie.poster_path ? (
+                <img
+                  src={`${IMAGE_URL}${movie.poster_path}`}
+                  alt={movie.title}
+                />
+              ) : (
+                <div className="no-image">Sem imagem</div>
+              )}
 
-            <p>
-              {movie.overview
-                ? movie.overview.slice(0, 120) + "..."
-                : "Sem descrição disponível."}
-            </p>
-          </div>
-        ))}
+              <h3>{movie.title}</h3>
+              <p>
+                {movie.overview
+                  ? movie.overview.slice(0, 120) + "..."
+                  : "Sem descrição disponível."}
+              </p>
+            </div>
+          ))
+        )}
       </div>
     </div>
   );
