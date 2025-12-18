@@ -125,3 +125,96 @@ input {
     transform: translateY(0);
   }
 }
+
+/* Botão de tema */
+.theme-btn {
+  margin: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #444;
+  color: #fff;
+  transition: 0.3s;
+}
+.theme-btn:hover {
+  background: #666;
+}
+
+/* Formulário de busca */
+.search-form {
+  display: flex;
+  gap: 10px;
+  margin: 20px 0;
+}
+.search-form input {
+  flex: 1;
+  padding: 8px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+.search-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #007bff;
+  color: #fff;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.search-btn:hover {
+  background: #0056b3;
+}
+
+/* Filtros */
+.filters {
+  margin: 20px 0;
+  display: flex;
+  gap: 10px;
+}
+.filters button {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #222;
+  color: #fff;
+  transition: 0.3s;
+}
+.filters button:hover {
+  background: #555;
+}
+
+/* Grid de filmes */
+.movie-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+  gap: 20px;
+}
+.movie-card {
+  background: var(--bg-color);
+  color: var(--text-color);
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 10px;
+  text-align: center;
+}
+.movie-card img {
+  width: 100%;
+  border-radius: 6px;
+}
+
+.genre-select {
+  padding: 8px 12px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #f9f9f9;
+  cursor: pointer;
+  font-size: 14px;
+  margin: 10px 0;
+  transition: 0.3s;
+}
+.genre-select:hover {
+  background: #eee;
+}
