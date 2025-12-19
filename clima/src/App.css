@@ -1,0 +1,125 @@
+/* Tema geral */
+.app {
+  font-family: "Poppins", sans-serif;
+  min-height: 100vh;
+  padding: 20px;
+  transition: 0.3s;
+}
+
+/* Tema claro */
+.app.light {
+  background: #f5f5f5;
+  color: #222;
+}
+
+/* Tema escuro */
+.app.dark {
+  background: #1a1a1a;
+  color: #fff;
+}
+
+/* Header */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tema-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  cursor: pointer;
+}
+
+/* Busca */
+.busca {
+  margin-top: 20px;
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+}
+
+.busca input {
+  padding: 12px;
+  width: 260px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.busca button {
+  padding: 12px 20px;
+  border-radius: 8px;
+  border: none;
+  background: #007bff;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.busca button:hover {
+  background: #0056b3;
+}
+
+/* Card clima atual */
+.card {
+  margin: 30px auto;
+  padding: 20px;
+  width: 260px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(10px);
+  border-radius: 15px;
+  animation: fadeIn 0.6s ease;
+}
+
+.icone {
+  width: 100px;
+  animation: flutuar 3s infinite ease-in-out;
+}
+
+.temp {
+  font-size: 32px;
+  font-weight: bold;
+}
+
+/* Previsão */
+.previsao-container {
+  text-align: center;
+}
+
+.previsao {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.prev-card {
+  background: rgba(255, 255, 255, 0.15);
+  padding: 15px;
+  width: 120px;
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  animation: fadeIn 0.6s ease;
+}
+
+/* Animações */
+@keyframes flutuar {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Erro */
+.erro {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
