@@ -11,13 +11,14 @@ export default function App() {
   const [search, setSearch] = useState("");
   const [theme, setTheme] = useState("dark");
   const [genre, setGenre] = useState("");
+  const [year, setYear] = useState("");
 
   // Atualiza tema
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", theme);
   }, [theme]);
 
-  // Carrega filmes populares
+  // Carrega filmes populares ao iniciar
   useEffect(() => {
     fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=pt-BR`)
       .then((res) => res.json())
@@ -43,10 +44,25 @@ export default function App() {
   // Filtro por gênero
   const handleGenreFilter = (genreId) => {
     setGenre(genreId);
-    if (!genreId) return; // se não escolher nada, não faz busca
+
+    if (!genreId) return;
 
     fetch(
       `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&with_genres=${genreId}`
+    )
+      .then((res) => res.json())
+      .then((data) => setMovies(data.results || []))
+      .catch(() => setMovies([]));
+  };
+
+  // Filtro por ano
+  const handleYearFilter = (yearValue) => {
+    setYear(yearValue);
+
+    if (!yearValue) return;
+
+    fetch(
+      `${BASE_URL}/discover/movie?api_key=${API_KEY}&language=pt-BR&primary_release_year=${yearValue}`
     )
       .then((res) => res.json())
       .then((data) => setMovies(data.results || []))
@@ -58,7 +74,10 @@ export default function App() {
       <h1>🎬 App de Filmes</h1>
 
       {/* Botão de tema */}
-      <button className="theme-btn" onClick={() => setTheme(theme === "dark" ? "light" : "dark")}>
+      <button
+        className="theme-btn"
+        onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+      >
         Alternar para {theme === "dark" ? "🌞 Claro" : "🌙 Escuro"}
       </button>
 
@@ -70,11 +89,14 @@ export default function App() {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
-        <button type="submit" className="search-btn">🔍 Buscar</button>
+        <button type="submit" className="search-btn">
+          🔍 Buscar
+        </button>
       </form>
 
-      {/* Dropdown de gêneros */}
+      {/* Filtros */}
       <div className="filters">
+        {/* Filtro por gênero */}
         <select
           value={genre}
           onChange={(e) => handleGenreFilter(e.target.value)}
@@ -88,6 +110,23 @@ export default function App() {
           <option value="10749">❤️ Romance</option>
           <option value="16">🎨 Animação</option>
           <option value="878">🚀 Ficção Científica</option>
+        </select>
+
+        {/* Filtro por ano */}
+        <select
+          value={year}
+          onChange={(e) => handleYearFilter(e.target.value)}
+          className="genre-select"
+        >
+          <option value="">Filtrar por ano...</option>
+          {Array.from({ length: 50 }, (_, i) => {
+            const y = 2024 - i;
+            return (
+              <option key={y} value={y}>
+                {y}
+              </option>
+            );
+          })}
         </select>
       </div>
 
