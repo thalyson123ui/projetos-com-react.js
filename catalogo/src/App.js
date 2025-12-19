@@ -6,22 +6,22 @@ function App() {
   const [search, setSearch] = useState("");
   const [genre, setGenre] = useState("");
   const [platform, setPlatform] = useState("");
+  const [year, setYear] = useState("");
+
   const [genresList, setGenresList] = useState([]);
   const [platformsList, setPlatformsList] = useState([]);
 
-  const [theme, setTheme] = useState(
-    localStorage.getItem("theme") || "dark"
-  );
+  const [theme, setTheme] = useState(localStorage.getItem("theme") || "dark");
 
   const API_KEY = "12554e2749ab423baaeee1077f0e3d20";
 
-  // Aplicar tema no body
+  // Aplicar tema
   useEffect(() => {
     document.body.className = theme;
     localStorage.setItem("theme", theme);
   }, [theme]);
 
-  // Carregar lista de gêneros e plataformas
+  // Carregar gêneros e plataformas
   useEffect(() => {
     fetch(`https://api.rawg.io/api/genres?key=${API_KEY}`)
       .then((res) => res.json())
@@ -39,18 +39,18 @@ function App() {
     if (search) url += `&search=${search}`;
     if (genre) url += `&genres=${genre}`;
     if (platform) url += `&platforms=${platform}`;
+    if (year) url += `&dates=${year}-01-01,${year}-12-31`;
 
     fetch(url)
       .then((res) => res.json())
       .then((data) => setGames(data.results));
-  }, [search, genre, platform]);
+  }, [search, genre, platform, year]);
 
   return (
     <div className="App">
       <header className="App-header">
         <h1>🎮 Catálogo de Jogos</h1>
 
-        {/* Botão de tema */}
         <button
           className="theme-btn"
           onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
@@ -59,7 +59,7 @@ function App() {
         </button>
       </header>
 
-      {/* Barra de busca e filtros */}
+      {/* Filtros */}
       <div className="filters">
         <input
           type="text"
@@ -82,6 +82,16 @@ function App() {
           {platformsList.map((p) => (
             <option key={p.id} value={p.id}>
               {p.name}
+            </option>
+          ))}
+        </select>
+
+        {/* Filtro por ano */}
+        <select onChange={(e) => setYear(e.target.value)}>
+          <option value="">Todos os anos</option>
+          {Array.from({ length: 30 }, (_, i) => 2025 - i).map((y) => (
+            <option key={y} value={y}>
+              {y}
             </option>
           ))}
         </select>
