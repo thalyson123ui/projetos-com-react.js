@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
 
 function App() {
@@ -20,26 +20,14 @@ function App() {
 
   const [timeLeft, setTimeLeft] = useState(getTimeLeft());
   const [dark, setDark] = useState(true);
-  const [playing, setPlaying] = useState(false);
-  const audioRef = useRef(null);
 
   useEffect(() => {
     const timer = setInterval(() => setTimeLeft(getTimeLeft()), 1000);
     return () => clearInterval(timer);
   }, []);
 
-  const toggleMusic = () => {
-    if (!audioRef.current) return;
-    playing ? audioRef.current.pause() : audioRef.current.play();
-    setPlaying(!playing);
-  };
-
   return (
     <div className={`app ${dark ? "dark" : "light"}`}>
-      <audio ref={audioRef} loop>
-        <source src="/jingle-bells.mp3" type="audio/mpeg" />
-      </audio>
-
       {/* Neve */}
       <div className="snow"></div>
 
@@ -73,9 +61,6 @@ function App() {
       )}
 
       <div className="controls">
-        <button onClick={toggleMusic}>
-          {playing ? "🔊 Pausar Música" : "🎵 Tocar Música"}
-        </button>
         <button onClick={() => setDark(!dark)}>
           {dark ? "☀️ Modo Claro" : "🌙 Modo Escuro"}
         </button>
