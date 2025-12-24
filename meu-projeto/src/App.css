@@ -1,0 +1,180 @@
+body {
+  margin: 0;
+  font-family: "Poppins", sans-serif;
+}
+
+/* TEMAS */
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  overflow: hidden;
+  transition: background 0.5s, color 0.5s;
+}
+
+.app.dark {
+  background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+  color: white;
+}
+
+.app.light {
+  background: linear-gradient(120deg, #fceabb, #f8b500);
+  color: #222;
+}
+
+h1 {
+  margin: 20px 0;
+  animation: glow 2s infinite alternate;
+}
+
+/* CONTAGEM */
+.countdown {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  z-index: 2;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+  border-radius: 15px;
+  min-width: 100px;
+  animation: float 3s ease-in-out infinite;
+}
+
+.card span {
+  font-size: 2.3rem;
+  font-weight: bold;
+}
+
+.controls {
+  margin-top: 25px;
+  display: flex;
+  gap: 15px;
+}
+
+button {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 25px;
+  font-size: 1rem;
+  cursor: pointer;
+  background: crimson;
+  color: white;
+  transition: transform 0.3s;
+}
+
+button:hover {
+  transform: scale(1.05);
+}
+
+/* ÁRVORE */
+.tree {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  animation: sway 4s ease-in-out infinite;
+}
+
+.layer {
+  width: 0;
+  height: 0;
+  border-left: 60px solid transparent;
+  border-right: 60px solid transparent;
+  border-bottom: 80px solid green;
+  margin: -20px auto;
+}
+
+.l2 {
+  border-bottom-color: #0b6623;
+}
+
+.l3 {
+  border-bottom-color: #0a4d1a;
+}
+
+.trunk {
+  width: 30px;
+  height: 40px;
+  background: #5a2d0c;
+  margin: auto;
+}
+
+.star {
+  color: gold;
+  font-size: 2rem;
+  animation: glow 1.5s infinite alternate;
+}
+
+/* FOGOS */
+.fireworks span {
+  position: absolute;
+  top: 20%;
+  left: 50%;
+  width: 6px;
+  height: 6px;
+  background: red;
+  border-radius: 50%;
+  animation: explode 2s infinite;
+}
+
+.fireworks span:nth-child(2) {
+  background: gold;
+  animation-delay: 0.5s;
+}
+
+.fireworks span:nth-child(3) {
+  background: cyan;
+  animation-delay: 1s;
+}
+
+/* NEVE */
+.snow::before,
+.snow::after {
+  content: "";
+  position: absolute;
+  top: -100%;
+  width: 200%;
+  height: 200%;
+  background-image: radial-gradient(white 2px, transparent 2px);
+  background-size: 50px 50px;
+  animation: snow 25s linear infinite;
+  opacity: 0.3;
+}
+
+.snow::after {
+  animation-duration: 35s;
+  opacity: 0.2;
+}
+
+/* ANIMAÇÕES */
+@keyframes float {
+  0% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+  100% { transform: translateY(0); }
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px gold; }
+  to { text-shadow: 0 0 25px red; }
+}
+
+@keyframes sway {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(2deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes explode {
+  0% { transform: scale(0); opacity: 1; }
+  100% { transform: scale(15); opacity: 0; }
+}
+
+@keyframes snow {
+  to { transform: translateY(50%); }
+}
