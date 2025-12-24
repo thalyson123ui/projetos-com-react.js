@@ -1,23 +1,35 @@
+/* RESET */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
   font-family: "Poppins", sans-serif;
 }
 
-/* TEMAS */
+/* =========================
+   APP BASE
+========================= */
 .app {
   min-height: 100vh;
+  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   text-align: center;
   overflow: hidden;
-  transition: background 0.5s, color 0.5s;
+  transition: background 0.5s ease, color 0.5s ease;
+  position: relative;
 }
 
+/* =========================
+   TEMAS
+========================= */
 .app.dark {
   background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
-  color: white;
+  color: #ffffff;
 }
 
 .app.light {
@@ -25,37 +37,55 @@ body {
   color: #222;
 }
 
+/* =========================
+   TÍTULO
+========================= */
 h1 {
-  margin: 20px 0;
+  margin: 20px 10px;
+  font-size: 2rem;
   animation: glow 2s infinite alternate;
+  z-index: 2;
 }
 
-/* CONTAGEM */
+/* =========================
+   CONTAGEM
+========================= */
 .countdown {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+  gap: 15px;
+  width: 100%;
+  max-width: 420px;
+  justify-content: center;
   z-index: 2;
 }
 
 .card {
   background: rgba(255, 255, 255, 0.2);
   backdrop-filter: blur(10px);
-  padding: 20px;
+  padding: 18px;
   border-radius: 15px;
-  min-width: 100px;
   animation: float 3s ease-in-out infinite;
 }
 
 .card span {
-  font-size: 2.3rem;
+  font-size: 2.2rem;
   font-weight: bold;
 }
 
+.card small {
+  display: block;
+  margin-top: 6px;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+
+/* =========================
+   CONTROLES
+========================= */
 .controls {
   margin-top: 25px;
-  display: flex;
-  gap: 15px;
+  z-index: 2;
 }
 
 button {
@@ -66,19 +96,29 @@ button {
   cursor: pointer;
   background: crimson;
   color: white;
-  transition: transform 0.3s;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button:hover {
   transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(220, 20, 60, 0.6);
 }
 
-/* ÁRVORE */
+button:active {
+  transform: scale(0.96);
+}
+
+/* =========================
+   ÁRVORE
+========================= */
 .tree {
   position: absolute;
   bottom: 20px;
   left: 20px;
   animation: sway 4s ease-in-out infinite;
+  z-index: 1;
 }
 
 .layer {
@@ -86,16 +126,16 @@ button:hover {
   height: 0;
   border-left: 60px solid transparent;
   border-right: 60px solid transparent;
-  border-bottom: 80px solid green;
+  border-bottom: 80px solid #0b6623;
   margin: -20px auto;
 }
 
 .l2 {
-  border-bottom-color: #0b6623;
+  border-bottom-color: #0a5a20;
 }
 
 .l3 {
-  border-bottom-color: #0a4d1a;
+  border-bottom-color: #084519;
 }
 
 .trunk {
@@ -111,29 +151,34 @@ button:hover {
   animation: glow 1.5s infinite alternate;
 }
 
-/* FOGOS */
+/* =========================
+   FOGOS
+========================= */
 .fireworks span {
   position: absolute;
   top: 20%;
   left: 50%;
   width: 6px;
   height: 6px;
-  background: red;
   border-radius: 50%;
-  animation: explode 2s infinite;
+  background: red;
+  animation: explode 2.5s infinite;
+  z-index: 1;
 }
 
 .fireworks span:nth-child(2) {
   background: gold;
-  animation-delay: 0.5s;
+  animation-delay: 0.6s;
 }
 
 .fireworks span:nth-child(3) {
   background: cyan;
-  animation-delay: 1s;
+  animation-delay: 1.2s;
 }
 
-/* NEVE */
+/* =========================
+   NEVE
+========================= */
 .snow::before,
 .snow::after {
   content: "";
@@ -142,17 +187,19 @@ button:hover {
   width: 200%;
   height: 200%;
   background-image: radial-gradient(white 2px, transparent 2px);
-  background-size: 50px 50px;
-  animation: snow 25s linear infinite;
+  background-size: 60px 60px;
+  animation: snow 30s linear infinite;
   opacity: 0.3;
 }
 
 .snow::after {
-  animation-duration: 35s;
+  animation-duration: 40s;
   opacity: 0.2;
 }
 
-/* ANIMAÇÕES */
+/* =========================
+   ANIMAÇÕES
+========================= */
 @keyframes float {
   0% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
@@ -177,4 +224,72 @@ button:hover {
 
 @keyframes snow {
   to { transform: translateY(50%); }
+}
+
+/* =========================
+   MEDIA QUERIES
+========================= */
+
+/* 📱 Celulares */
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.4rem;
+  }
+
+  .card {
+    padding: 12px;
+  }
+
+  .card span {
+    font-size: 1.6rem;
+  }
+
+  .tree {
+    transform: scale(0.6);
+    left: 5px;
+    bottom: 5px;
+  }
+
+  .fireworks span {
+    animation-duration: 3s;
+  }
+}
+
+/* 📱 Tablets */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .tree {
+    transform: scale(0.8);
+  }
+
+  .snow::before,
+  .snow::after {
+    background-size: 80px 80px;
+    animation-duration: 40s;
+  }
+}
+
+/* 📺 Desktop grande */
+@media (min-width: 1200px) {
+  h1 {
+    font-size: 2.6rem;
+  }
+
+  .card span {
+    font-size: 3rem;
+  }
+
+  .tree {
+    transform: scale(1.1);
+  }
+}
+
+/* 📱 Paisagem baixa */
+@media (max-height: 500px) {
+  .tree {
+    display: none;
+  }
 }
