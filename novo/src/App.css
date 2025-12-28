@@ -106,3 +106,111 @@
   from { transform: scale(1); }
   to { transform: scale(1.15); }
 }
+
+/* ============================= */
+/* 📱 Celulares pequenos (até 480px) */
+/* ============================= */
+@media (max-width: 480px) {
+  .App-logo {
+    height: 80px;
+  }
+
+  h1 {
+    font-size: 1.6rem;
+    text-align: center;
+  }
+
+  .countdown {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .countdown div {
+    min-width: 120px;
+    padding: 15px;
+  }
+
+  .countdown span {
+    font-size: 2rem;
+  }
+
+  .toggle {
+    top: 10px;
+    right: 10px;
+    padding: 8px 12px;
+    font-size: 0.8rem;
+  }
+
+  .ano-novo {
+    font-size: 2rem;
+    text-align: center;
+  }
+}
+
+/* ============================= */
+/* 📱 Celulares grandes / Tablets pequenos (481px – 768px) */
+/* ============================= */
+@media (max-width: 768px) {
+  .App-logo {
+    height: 100px;
+  }
+
+  h1 {
+    font-size: 2rem;
+  }
+
+  .countdown {
+    gap: 15px;
+  }
+
+  .countdown div {
+    min-width: 100px;
+    padding: 18px;
+  }
+
+  .countdown span {
+    font-size: 2.2rem;
+  }
+
+  .ano-novo {
+    font-size: 2.4rem;
+  }
+}
+
+/* ============================= */
+/* 💻 Notebooks (769px – 1200px) */
+/* ============================= */
+@media (max-width: 1200px) {
+  .countdown {
+    gap: 18px;
+  }
+
+  .countdown div {
+    min-width: 90px;
+  }
+}
+
+/* ============================= */
+/* 🖥️ Telas grandes / TVs */
+/* ============================= */
+@media (min-width: 1600px) {
+  .App-logo {
+    height: 160px;
+  }
+
+  h1 {
+    font-size: 3rem;
+  }
+
+  .countdown span {
+    font-size: 3.2rem;
+  }
+
+  .countdown div {
+    padding: 25px;
+  }
+
+  .ano-novo {
+    font-size: 4rem;
+  }
+}
