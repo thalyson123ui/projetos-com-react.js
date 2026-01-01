@@ -1,25 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import SearchBar from "../components/SearchBar";
+import CarCard from "../components/CarCard";
 
-function App() {
+export default function CarStore() {
+  const [cars, setCars] = useState([]);
+  const [loading, setLoading] = useState(false);
+
+  const searchCars = async (model) => {
+    setLoading(true);
+
+    try {
+      const response = await fetch(
+        `https://api.api-ninjas.com/v1/cars?model=${model}`,
+        {
+          headers: { "X-Api-Key": "SUA_API_KEY_AQUI" }
+        }
+      );
+
+      const data = await response.json();
+      setCars(data);
+    } catch (error) {
+      console.error("Erro ao buscar carros:", error);
+    }
+
+    setLoading(false);
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{ padding: 20 }}>
+      <h1>🚗 Loja de Carros — Luxo e Populares</h1>
+
+      <SearchBar onSearch={searchCars} />
+
+      {loading && <p>Carregando...</p>}
+
+      <div style={{ display: "flex", flexWrap: "wrap" }}>
+        {cars.map((car, index) => (
+          <CarCard key={index} car={car} />
+        ))}
+      </div>
     </div>
   );
 }
-
-export default App;
