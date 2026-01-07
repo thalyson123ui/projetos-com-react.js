@@ -1,0 +1,159 @@
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* VARIÁVEIS (modo claro / escuro automático) */
+:root {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #111827;
+  --subtext: #4b5563;
+  --accent: #2563eb;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0f172a;
+    --card: #020617;
+    --text: #e5e7eb;
+    --subtext: #9ca3af;
+    --accent: #3b82f6;
+  }
+}
+
+/* APP */
+.App {
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+/* HEADER */
+.App-header {
+  padding: 40px 20px 60px;
+  max-width: 1300px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* LOGO */
+.App-logo {
+  height: 90px;
+  margin-bottom: 20px;
+  animation: float 4s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+/* TÍTULOS */
+.App-header h1 {
+  font-size: 3rem;
+  margin-bottom: 10px;
+}
+
+.App-header p {
+  color: var(--subtext);
+  margin-bottom: 40px;
+}
+
+/* GRID DE NOTÍCIAS */
+.news-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 24px;
+}
+
+/* CARD */
+.news-card {
+  background: var(--card);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+  transition: transform .3s ease, box-shadow .3s ease;
+  text-align: left;
+}
+
+.news-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0,0,0,.15);
+}
+
+/* IMAGEM */
+.news-image {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+/* CONTEÚDO */
+.news-card h3 {
+  font-size: 1.1rem;
+  padding: 16px 16px 8px;
+}
+
+.news-card p {
+  padding: 0 16px 16px;
+  font-size: 0.95rem;
+  color: var(--subtext);
+}
+
+/* LINK */
+.App-link {
+  display: inline-block;
+  margin: 0 16px 18px;
+  color: var(--accent);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.App-link:hover {
+  text-decoration: underline;
+}
+
+/* RESPONSIVO */
+@media (max-width: 768px) {
+  .App-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .news-image {
+    height: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .App-header {
+    padding: 30px 14px 40px;
+  }
+
+  .App-logo {
+    height: 70px;
+  }
+
+  .news-card h3 {
+    font-size: 1rem;
+  }
+}
+
+[data-theme='dark'] {
+  --bg: #0f172a;
+  --card: #020617;
+  --text: #e5e7eb;
+  --subtext: #9ca3af;
+  --accent: #3b82f6;
+}
+
+[data-theme='light'] {
+  --bg: #f4f6f8;
+  --card: #ffffff;
+  --text: #111827;
+  --subtext: #4b5563;
+  --accent: #2563eb;
+}
