@@ -1,0 +1,131 @@
+* {
+  box-sizing: border-box;
+}
+
+.app {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s, color 0.3s;
+  padding: 20px;
+}
+
+.dark {
+  background: #020617;
+  color: #fff;
+}
+
+.light {
+  background: #f8fafc;
+  color: #020617;
+}
+
+h1 {
+  margin-bottom: 20px;
+}
+
+.theme {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 1.4rem;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+.circle {
+  position: relative;
+  margin: 20px 0;
+}
+
+svg {
+  transform: rotate(-90deg);
+}
+
+circle {
+  fill: none;
+  stroke-width: 12;
+}
+
+.bg {
+  stroke: #334155;
+}
+
+.light .bg {
+  stroke: #cbd5e1;
+}
+
+.progress {
+  stroke: #3b82f6;
+  transition: stroke-dashoffset 0.1s linear;
+}
+
+.time {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  font-weight: bold;
+  animation: pulse 0.5s ease;
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+.buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+button {
+  padding: 10px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: #2563eb;
+  color: #fff;
+}
+
+button:hover {
+  background: #1d4ed8;
+}
+
+.laps {
+  width: 100%;
+  max-width: 320px;
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.laps li {
+  padding: 6px 10px;
+  border-bottom: 1px solid #334155;
+  font-size: 0.9rem;
+}
+
+.light .laps li {
+  border-color: #cbd5e1;
+}
+
+/* Responsivo */
+@media (max-width: 480px) {
+  .time {
+    font-size: 1.6rem;
+  }
+
+  svg {
+    width: 180px;
+    height: 180px;
+  }
+}
