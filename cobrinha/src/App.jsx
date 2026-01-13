@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import "./App.css";
 
 const GRID_SIZE = 20;
@@ -7,6 +7,8 @@ const INITIAL_SNAKE = [
   { x: 9, y: 10 }
 ];
 const INITIAL_DIRECTION = { x: 1, y: 0 };
+const INITIAL_SPEED = 180;
+const MIN_SPEED = 60;
 
 function randomFood(snake) {
   let food;
@@ -24,6 +26,12 @@ export default function App() {
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
   const [food, setFood] = useState(randomFood(INITIAL_SNAKE));
   const [gameOver, setGameOver] = useState(false);
+  const [score, setScore] = useState(0);
+  const [speed, setSpeed] = useState(INITIAL_SPEED);
+  const [darkMode, setDarkMode] = useState(true);
+
+  const eatSound = useRef(new Audio("/eat.mp3"));
+  const gameOverSound = useRef(new Audio("/gameover.mp3"));
 
   useEffect(() => {
     const handleKey = (e) => {
@@ -58,41 +66,57 @@ export default function App() {
           y: prev[0].y + direction.y
         };
 
-        // colisão parede
+        // colisão
         if (
           head.x < 0 || head.y < 0 ||
           head.x >= GRID_SIZE || head.y >= GRID_SIZE ||
           prev.some(seg => seg.x === head.x && seg.y === head.y)
         ) {
           setGameOver(true);
+          gameOverSound.current.play();
           return prev;
         }
 
         const newSnake = [head, ...prev];
 
         if (head.x === food.x && head.y === food.y) {
+          eatSound.current.play();
+          setScore(s => s + 1);
           setFood(randomFood(newSnake));
+
+          setSpeed(s =>
+            s > MIN_SPEED ? s - 5 : s
+          );
         } else {
           newSnake.pop();
         }
 
         return newSnake;
       });
-    }, 150);
+    }, speed);
 
     return () => clearInterval(interval);
-  }, [direction, food, gameOver]);
+  }, [direction, food, gameOver, speed]);
 
   const resetGame = () => {
     setSnake(INITIAL_SNAKE);
     setDirection(INITIAL_DIRECTION);
     setFood(randomFood(INITIAL_SNAKE));
     setGameOver(false);
+    setScore(0);
+    setSpeed(INITIAL_SPEED);
   };
 
   return (
-    <div className="container">
-      <h1>🐍 Jogo da Cobrinha</h1>
+    <div className={`container ${darkMode ? "dark" : "light"}`}>
+      <header className="top">
+        <h1>🐍 Cobrinha</h1>
+        <button onClick={() => setDarkMode(!darkMode)}>
+          {darkMode ? "☀️ Claro" : "🌙 Escuro"}
+        </button>
+      </header>
+
+      <p className="score">Pontuação: {score}</p>
 
       <div className="board">
         {Array.from({ length: GRID_SIZE * GRID_SIZE }).map((_, i) => {

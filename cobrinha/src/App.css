@@ -4,9 +4,7 @@
 
 body {
   margin: 0;
-  background: #0f172a;
   font-family: Arial, sans-serif;
-  color: #fff;
 }
 
 .container {
@@ -15,10 +13,28 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  transition: background 0.3s, color 0.3s;
 }
 
-h1 {
-  margin-bottom: 16px;
+.container.dark {
+  background: #0f172a;
+  color: #fff;
+}
+
+.container.light {
+  background: #f8fafc;
+  color: #020617;
+}
+
+.top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.score {
+  margin: 10px 0;
+  font-weight: bold;
 }
 
 .board {
@@ -26,42 +42,42 @@ h1 {
   grid-template-columns: repeat(20, 20px);
   grid-template-rows: repeat(20, 20px);
   gap: 2px;
-  background: #020617;
   padding: 10px;
   border-radius: 12px;
+  background: rgba(0,0,0,0.2);
 }
 
 .cell {
   width: 20px;
   height: 20px;
-  background: #1e293b;
   border-radius: 4px;
+  background: #94a3b8;
+}
+
+.container.dark .cell {
+  background: #1e293b;
 }
 
 .snake {
-  background: #22c55e;
+  background: #22c55e !important;
 }
 
 .food {
-  background: #ef4444;
+  background: #ef4444 !important;
+}
+
+button {
+  padding: 6px 12px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .game-over {
   margin-top: 20px;
   text-align: center;
 }
-
-button {
+.game-over button {
   margin-top: 10px;
-  padding: 8px 16px;
-  border: none;
-  border-radius: 8px;
-  background: #22c55e;
-  color: #000;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:hover {
-  opacity: 0.8;
 }
