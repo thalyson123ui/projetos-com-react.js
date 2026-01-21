@@ -32,12 +32,4 @@ function App() {
   )
 }
 
-import Contador from "./Contador";
-
-function App() {
-  return <Contador />;
-}
-
-export default App;
-
-
+export default App
